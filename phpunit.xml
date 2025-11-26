@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/12.4/phpunit.xsd" bootstrap="vendor/autoload.php" colors="true">
+  <!-- suites de tests -->
+  <testsuites>
+    <testsuite name="MyWeeklyAllowance Test Suite">
+      <directory>Tests</directory>
+    </testsuite>
+  </testsuites>
+  <php>
+    <ini name="xdebug.mode" value="coverage"/>
+  </php>
+  <!-- config coverage -->
+  <coverage>
+    <report>
+      <html outputDirectory="coverage"/>
+    </report>
+  </coverage>
+  <source>
+    <include>
+      <!-- inclut tout le code de src -->
+      <directory>src</directory>
+    </include>
+  </source>
+</phpunit>
