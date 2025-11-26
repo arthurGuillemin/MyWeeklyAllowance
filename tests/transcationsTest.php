@@ -23,7 +23,7 @@ use App\Exception\SoldeInsuffisantException;
  * Et respecte le principe FIRST :
  *  - Fast, Independent, Repeatable, Self-validating, Timely
  */
-class TransactionTest extends TestCase
+class TranscationsTest extends TestCase
 {
     private Account $account;    
     private Transaction $transaction;
