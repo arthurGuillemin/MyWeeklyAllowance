@@ -22,4 +22,15 @@ class Account
     {
         return $this->balance;
     }
+    
+    public function addBalance($amount){
+        $this->balance += $amount;
+        return $this->balance;
+    }
+
+    public function subtractBalance($amount){
+        $this->balance -= $amount;
+        return $this->balance;
+    }
+
 }
