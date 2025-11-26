@@ -16,7 +16,7 @@ class WeeklyAllowanceTest extends TestCase
     }
     public function testDefAlloc(): void
     {
-        $result = $this->allowance->defineAllowance(10);
+        $result = $this->allowance->setAllowance(10);
         $this->assertEquals(10, $result, 'Alloc hebdomadaire doit être définie à 10');
     }
 
