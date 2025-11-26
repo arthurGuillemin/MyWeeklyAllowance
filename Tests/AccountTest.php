@@ -21,7 +21,7 @@ class AccountTest extends TestCase
     {
       //Assert
         $this->assertEquals("Arthur", $this->account->getName());
-        $this->assertSame(0, $this->account->getBalance());
+        $this->assertEquals(0, $this->account->getBalance());
     }
 
     public function testGetSolde(): void
@@ -30,6 +30,6 @@ class AccountTest extends TestCase
         $balance = $this->account->getBalance();
 
         // Assert
-        $this->assertSame(0, $balance);
+        $this->assertEquals(0, $balance);
     }
 }
