@@ -7,6 +7,9 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use App\Account;
 use App\Transaction;
+use App\Exception\SoldeInsuffisantException;
+use App\Exception\MontantInvalideException;
+
 
 class TransactionsTest extends TestCase
 {
@@ -46,6 +49,73 @@ class TransactionsTest extends TestCase
         $this->transaction->depense($this->account, 30);
         $this->assertEquals(50, $this->account->getBalance(), 'Le solde doit être de 50 après 100 - 20 - 30');
     }
+    public function testDepenseAvecSoldeInsuffisantLeveException(): void
+    {
+        // Arrange
+        $this->transaction->depot($this->account, 20);
+
+        // Assert
+        $this->expectException(SoldeInsuffisantException::class);
+
+        // Act
+        $this->transaction->depense($this->account, 50);
+    }
+
+    /**
+     * Teste qu'on ne peut pas dépenser avec un solde à zéro
+     */
+    public function testDepenseSurCompteVideLeveException(): void
+    {
+        // Assert
+        $this->expectException(SoldeInsuffisantException::class);
+
+        // Act
+        $this->transaction->depense($this->account, 10);
+    }
+        public function testDepotNegatifLeveException(): void
+    {
+        // Assert
+        $this->expectException(MontantInvalideException::class);
+
+        // Act
+        $this->transaction->depot($this->account, -10);
+    }
+
+        public function testDepotZeroLeveException(): void
+    {
+        // Assert
+        $this->expectException(MontantInvalideException::class);
+
+        // Act
+        $this->transaction->depot($this->account, 0);;
+    }
+        public function testDepenseNegativeLeveException(): void
+    {
+        // Arrange
+        $this->transaction->depot($this->account, 50);;
+
+        // Assert
+        $this->expectException(MontantInvalideException::class);
+
+        // Act
+        $this->transaction->depense($this->account, -10);
+    }
+
+    /**
+     * Teste qu'une dépense avec montant zéro lève une exception
+     */
+    public function testDepenseZeroLeveException(): void
+    {
+        // Arrange
+        $this->transaction->depot($this->account, 50);
+
+        // Assert
+        $this->expectException(MontantInvalideException::class);
+
+        // Act
+        $this->transaction->depense($this->account, 0);
+    }
+
 
     public function testScenarioComplet(): void
     {
