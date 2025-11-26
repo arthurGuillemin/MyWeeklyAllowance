@@ -9,6 +9,15 @@ use App\Exception\SoldeInsuffisantException;
 
 class Transaction
 {
+
+private Account $account;
+
+    public function __construct(Account $account)
+    {
+        $this->account = $account;
+    }
+
+    
     public function depot(Account $account, float $montant): void
     {
         if ($montant <= 0) {
