@@ -2,6 +2,7 @@
     "name": "my-team/my-weekly-allowance",
     "description": "Module de gestion d’argent de poche pour adolescents",
     "type": "project",
+    "license": "proprietary",
     "require": {
         "php": ">=8.0"
     },
