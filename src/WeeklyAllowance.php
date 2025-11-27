@@ -32,4 +32,16 @@ class WeeklyAllowance
     {
         return $this->simulation;
     }
+
+    /* ajout alloc sur compte */
+    public function applyToAccount(Account $account): float
+    {
+        return $account->addBalance($this->allowance);
+    }
+
+    /* applique simulation au compte */
+    public function applySimulationToAccount(Account $account): float
+    {
+        return $account->addBalance($this->simulation);
+    }
 }
