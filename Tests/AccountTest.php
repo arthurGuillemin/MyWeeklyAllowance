@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
@@ -8,28 +9,36 @@ class AccountTest extends TestCase
 {
     private Account $account;
 
-      /**
-     * setUp() est appelée avant chaque test pour garantir l’isolation (FIRST - Independent).
-     */
     protected function setUp(): void
     {   
         $name = "Arthur";
-        $this->account = new Account($name);
+        $this->account = new Account($name, "arthur@exazmple.com", 17, "ado");
     }
 
     public function testCreateAccount(): void
     {
-      //Assert
         $this->assertEquals("Arthur", $this->account->getName());
         $this->assertEquals(0, $this->account->getBalance());
+        $this->assertEquals("arthur@exazmple.com", $this->account->getEmail());
+        $this->assertEquals(17, $this->account->getAge());
+        $this->assertEquals("ado", $this->account->getType());
     }
 
     public function testGetSolde(): void
     {
-        // Act
         $balance = $this->account->getBalance();
-
-        // Assert
         $this->assertEquals(0, $balance);
+    }
+
+    public function testNameCannotBeEmpty(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        new Account("");
+    }
+
+    public function testAgeCannotBeNegative(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        new Account("Emy", "emy@exemple.com", -5, "parent");
     }
 }
