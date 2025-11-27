@@ -3,7 +3,7 @@
   <!-- suites de tests -->
   <testsuites>
     <testsuite name="MyWeeklyAllowance Test Suite">
-      <directory>Tests</directory>
+      <directory>tests</directory>
     </testsuite>
   </testsuites>
   <php>
