@@ -2,9 +2,9 @@ name: Run PHPUnit Tests
 
 on:
   push:
-    branches: [CI/launch_test]
+    branches: [main]
   pull_request:
-    branches: [CI/launch_test]
+    branches: [main]
 
 jobs:
   phpunit:
