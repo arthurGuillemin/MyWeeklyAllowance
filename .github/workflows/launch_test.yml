@@ -1,0 +1,43 @@
+name: Run PHPUnit & Coverage
+
+on:
+  push:
+    branches: [CI/launch_test]
+  pull_request:
+    branches: [CI/launch_test]
+
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version: [8.4]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up PHP with Xdebug
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          coverage: xdebug
+
+      - name: Validate composer.json
+        run: composer validate --strict || true
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-progress --no-interaction
+
+      - name: Dump autoload
+        run: composer dump-autoload
+
+      - name: Run PHPUnit with coverage
+        run: vendor/bin/phpunit --configuration phpunit.xml
+
+      - name: Upload Coverage Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
