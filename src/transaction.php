@@ -6,6 +6,7 @@ namespace App;
 
 use App\Exception\MontantInvalideException;
 use App\Exception\SoldeInsuffisantException;
+use App\Account;
 
 class Transaction
 {
